@@ -42,6 +42,16 @@ public class BookService implements IBookService{
     }
 
     @Override
+    public List<Book> getAll(String nome) {
+        if(nome == null){
+            return bookRepository.findAll();
+        }else{
+            return bookRepository.findByAuthorNome(nome);
+        }
+
+    }
+
+    @Override
     public Book get(int id) {
         return bookRepository.findById(id).get();
     }

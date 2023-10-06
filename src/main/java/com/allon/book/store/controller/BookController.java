@@ -15,9 +15,14 @@ public class BookController {
     @Autowired
     private BookService service;
     @GetMapping
-    public List<Book> GetAll(@RequestParam(value = "authorId", required = false) Integer id)
+    public List<Book> GetAll(@RequestParam(value = "authorId", required = false) Integer id, @RequestParam(value = "nome", required = false) String nome)
     {
+        if(nome != null){
+            return service.getAll(nome);
+        }
+
         return service.getAll(id);
+
     }
 
     @GetMapping("/{id}")
