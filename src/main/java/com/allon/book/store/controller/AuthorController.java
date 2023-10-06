@@ -5,6 +5,7 @@ import com.allon.book.store.model.Author;
 import com.allon.book.store.service.AuthorService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,8 +22,14 @@ public class AuthorController {
         return  service.getAll();
     }
 
+    @GetMapping("/{id}")
+    public Author GetById(@PathVariable int id){return service.get(id);}
+
     @PostMapping
     public Author Create(@Valid @RequestBody AuthorDTO dto){
         return service.create(dto);
     }
+
+    @DeleteMapping("/{id}")
+    public void Delete(@PathVariable int id){service.delete(id);}
 }

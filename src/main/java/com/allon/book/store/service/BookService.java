@@ -14,7 +14,7 @@ import java.util.Optional;
 @Service
 public class BookService implements IBookService{
     @Autowired
-    private BookRepository repository;
+    private BookRepository bookRepository;
     @Autowired
     private AuthorRepository authorRepository;
 
@@ -27,17 +27,17 @@ public class BookService implements IBookService{
         Author author = optAuthor.orElse(null);
         book.setAuthor(author);
 
-        return repository.save(book);
+        return bookRepository.save(book);
     }
 
     @Override
     public List<Book> getAll() {
-        return repository.findAll();
+        return bookRepository.findAll();
     }
 
     @Override
     public Book get(int id) {
-        return null;
+        return bookRepository.findById(id).get();
     }
 
     @Override
@@ -47,6 +47,6 @@ public class BookService implements IBookService{
 
     @Override
     public void delete(int id) {
-
+        bookRepository.deleteById(id);
     }
 }

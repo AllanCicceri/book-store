@@ -18,8 +18,14 @@ public class BookController {
         return service.getAll();
     }
 
+    @GetMapping("/{id}")
+    public Book GetById(@PathVariable int id){return service.get(id);}
+
     @PostMapping
     public Book Create(@RequestBody BookDTO dto){
         return service.create(dto);
     }
+
+    @DeleteMapping("/{id}")
+    public void Delete(@PathVariable int id){service.delete(id);}
 }
