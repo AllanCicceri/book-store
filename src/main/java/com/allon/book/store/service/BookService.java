@@ -31,8 +31,14 @@ public class BookService implements IBookService{
     }
 
     @Override
-    public List<Book> getAll() {
-        return bookRepository.findAll();
+    public List<Book> getAll(Integer id) {
+        if(id == null){
+            return bookRepository.findAll();
+        }else{
+            Author author = authorRepository.findById(id).get();
+            return bookRepository.findByAuthor(author);
+        }
+
     }
 
     @Override
@@ -41,8 +47,15 @@ public class BookService implements IBookService{
     }
 
     @Override
-    public Book update(int id) {
-        return null;
+    public Book update(int id, BookDTO dto) {
+        Book book = bookRepository.findById(id).get();
+        book.setName(dto.getName());
+
+        Author author = authorRepository.findById(dto.getAuthorId()).get();
+
+        book.setAuthor(author);
+
+        return bookRepository.save(book);
     }
 
     @Override

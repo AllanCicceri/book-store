@@ -31,8 +31,10 @@ public class AuthorService implements IAuthorService {
     }
 
     @Override
-    public Author update(int id) {
-        return null;
+    public Author update(int id, AuthorDTO dto) {
+        Author author = repository.findById(id).get();
+        author.setNome(dto.getName());
+        return repository.save(author);
     }
 
     @Override

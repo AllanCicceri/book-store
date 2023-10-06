@@ -6,9 +6,9 @@ import java.util.List;
 
 public interface IBookService {
     Book create(BookDTO dto);
-    List<Book> getAll();
+    List<Book> getAll(Integer id);
     Book get(int id);
-    Book update(int id);
+    Book update(int id, BookDTO dto);
     void delete(int id);
 
 }

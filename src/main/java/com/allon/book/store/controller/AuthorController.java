@@ -30,6 +30,9 @@ public class AuthorController {
         return service.create(dto);
     }
 
+    @PostMapping("/{id}")
+    public Author Update(@PathVariable int id, @Valid @RequestBody AuthorDTO dto) {return service.update(id, dto);}
+
     @DeleteMapping("/{id}")
     public void Delete(@PathVariable int id){service.delete(id);}
 }

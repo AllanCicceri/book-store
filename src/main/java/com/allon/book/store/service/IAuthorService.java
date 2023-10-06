@@ -9,6 +9,8 @@ public interface IAuthorService {
     Author create(AuthorDTO author);
     List<Author> getAll();
     Author get(int id);
-    Author update(int id);
+
+    Author update(int id, AuthorDTO dto);
+
     void delete(int id);
 }
